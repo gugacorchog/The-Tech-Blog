@@ -7,7 +7,7 @@ const newPostHandler = async (event) => {
 
     if (event.target.value == "update") {
         // if update button is clicked, use PUT to update the article 
-        const response = await fetch(`/api/post/${id}`, {
+        const response = await fetch(`/api/article/${id}`, {
             method: 'PUT',
             body: JSON.stringify({ id, editedTitle, editedContent }),
             headers: {
@@ -19,7 +19,7 @@ const newPostHandler = async (event) => {
         if (response.ok) {
             document.location.replace(`/dashboard`);
         } else {
-            alert('Failed to update post');
+            alert('Failed to update article');
         }
     } else if (event.target.value == "cancel") {
         // if cancel button is clicked, redirect to dashboard
