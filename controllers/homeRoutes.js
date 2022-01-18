@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { Post, User, Comment } = require('../models');
+const { Article, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
     // Get all articles and JOIN with user data
-    const postData = await Post.findAll(
+    const articleData = await Article.findAll(
       {
         include: [
           {
@@ -16,10 +16,10 @@ router.get('/', async (req, res) => {
       }
     );
     //console.log(JSON.stringify({ articleData }, null, 2));
-    const post = postData.map((post) => post.get({ plain: true }));
+    const articles = articleData.map((article) => article.get({ plain: true }));
     // Pass serialized data and session flag into template
     res.render('homepage', {
-      post,
+      articles,
       logged_in: req.session.logged_in
     });
   } catch (err) {
@@ -28,9 +28,9 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/post/:id', async (req, res) => {
+router.get('/article/:id', async (req, res) => {
   try {
-    const postData = await Post.findByPk(req.params.id, {
+    const articleData = await Article.findByPk(req.params.id, {
       include: [
         {
           model: User,
@@ -46,11 +46,11 @@ router.get('/post/:id', async (req, res) => {
       ],
     });
 
-    const post = postData.get({ plain: true });
+    const article = articleData.get({ plain: true });
     //console.log(JSON.stringify({ article }, null, 2)); 
 
-    res.render('post', {
-      ...post,
+    res.render('article', {
+      ...article,
       logged_in: req.session.logged_in
     });
   } catch (err) {
@@ -58,19 +58,19 @@ router.get('/post/:id', async (req, res) => {
   }
 });
 
-router.get('/post/:id/edit', async (req, res) => {
+router.get('/article/:id/edit', async (req, res) => {
   try {
-    const postData = await Post.findByPk(req.params.id, {
+    const articleData = await Article.findByPk(req.params.id, {
       include: [
         {
           model: User
         },
       ],
     });
-    const post = postData.get({ plain: true });
+    const article = articleData.get({ plain: true });
     //console.log(JSON.stringify({ article }, null, 2));
-    res.render('editPost', {
-      ...post,
+    res.render('editArticle', {
+      ...article,
       logged_in: req.session.logged_in
     });
   } catch (err) {
@@ -84,7 +84,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Post }],
+      include: [{ model: Article }],
     });
 
     //console.log(JSON.stringify({ userData }, null, 2));
@@ -124,4 +124,3 @@ router.get('/signup', (req, res) => {
 });
 
 module.exports = router;
-

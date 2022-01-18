@@ -4,14 +4,13 @@
             </div>
         </div>
 <!-- Display list of articles --> 
-{{#each posts as |post| }}
+{{#each articles as |article| }}
 <div class="row">
             <div class="bg-light p-3 m-1">
-                <h2 class="blog-post-title">{{post.title}}</h2>
-                <p class="blog-post-meta">{{format_date post.date_created}} by {{post.user.name}}</p>
-                <p>{{post.content}}</p>
-                <p><a href="/post/{{post.id}}">Read more...</a></p>
+                <h2 class="blog-post-title">{{article.title}}</h2>
+                <p class="blog-post-meta">{{format_date article.date_created}} by {{article.user.name}}</p>
+                <p>{{article.content}}</p>
+                <p><a href="/article/{{article.id}}">Read more...</a></p>
             </div>
         </div>
 {{/each}}
-

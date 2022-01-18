@@ -3,7 +3,6 @@ const { User } = require('../../models');
 
 router.post('/', async (req, res) => {
   try {
-    console.log(req.body)
     const userData = await User.create(req.body);
 
     req.session.save(() => {
@@ -40,6 +39,7 @@ router.post('/login', async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
+      
       res.json({ user: userData, message: 'You are now logged in!' });
     });
 
@@ -48,8 +48,10 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.get('/logout', (req, res) => {
+router.post('/logout', (req, res) => {
+  console.log("Log out post");
   if (req.session.logged_in) {
+    console.log("CURRENTLY LOGGED IN!!");
     req.session.destroy(() => {
       res.status(204).end();
     });

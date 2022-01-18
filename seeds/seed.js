@@ -1,8 +1,8 @@
 const sequelize = require('../config/connection');
-const { User, Post, Comment } = require('../models');
+const { User, Article, Comment } = require('../models');
 
 const userData = require('./userData.json');
-const postData = require('./postData.json');
+const articleData = require('./articleData.json');
 const commentData = require('./commentData.json');
 
 // populate seeds json 
@@ -15,7 +15,7 @@ const seedDatabase = async () => {
             returning: true,
         });
 
-        const post = await Post.bulkCreate(postData, {
+        const articles = await Article.bulkCreate(articleData, {
             individualHooks: true,
             returning: true,
         });

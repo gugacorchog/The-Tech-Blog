@@ -30,16 +30,16 @@
   </div>
 </div>
 
-{{!-- Display posts --}}
-<div class="row post-list">
-  {{#each posts as |post| }}
+{{!-- Display articles of the user --}}
+<div class="row article-list">
+  {{#each articles as |article| }}
   <div class="bg-light p-3 m-1">
-    <h2 class="blog-post-title">{{title}}</h2>
-    <p class="blog-post-meta">{{format_date post.date_created}}</p>
-    <p>{{post.content}}</p>
-    <p><a href="/post/{{user.id}}">Read more...</a></p>
-    <button class="btn btn-primary" type="submit" data-id="{{user.id}}" value="edit">Edit</button>
-    <button class="btn btn-danger" type="submit" data-id="{{user.id}}" value="delete">DELETE</button>
+    <h2 class="blog-post-title">{{article.title}}</h2>
+    <p class="blog-post-meta">{{format_date article.date_created}}</p>
+    <p>{{article.content}}</p>
+    <p><a href="/article/{{article.id}}">Read more...</a></p>
+    <button class="btn btn-primary" type="submit" data-id="{{article.id}}" value="edit">Edit</button>
+    <button class="btn btn-danger" type="submit" data-id="{{article.id}}" value="delete">DELETE</button>
   </div>
   {{/each}}
 </div>

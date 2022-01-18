@@ -1,25 +1,25 @@
 const router = require('express').Router();
-const { Post } = require('../../models');
+const { Article } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-//create Post
+//create a new article 
 router.post('/', withAuth, async (req, res) => {
   try {
-    const newPost = await Post.create({
+    const newArticle = await Article.create({
       ...req.body,
       user_id: req.session.user_id,
     });
 
-    res.status(200).json(newPost);
+    res.status(200).json(newArticle);
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-//edit Post
+//edit an article 
 router.put('/:id', withAuth, async (req, res) => {
   try {
-    const editPost = await Post.update(
+    const editArticle = await Article.update(
       {
         title: req.body.editedTitle,
         content: req.body.editedContent,
@@ -31,16 +31,16 @@ router.put('/:id', withAuth, async (req, res) => {
         }
       });
     
-    res.status(200).json(editPost);
+    res.status(200).json(editArticle);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-//delete Post
+//delete an article 
 router.delete('/:id', withAuth, async (req, res) => {
   try {
-    const projectData = await Post.destroy({
+    const projectData = await Article.destroy({
       where: {
         id: req.params.id,
         user_id: req.session.user_id,
@@ -48,7 +48,7 @@ router.delete('/:id', withAuth, async (req, res) => {
     });
 
     if (!projectData) {
-      res.status(404).json({ message: 'No Post found with this id!' });
+      res.status(404).json({ message: 'No article found with this id!' });
       return;
     }
 
