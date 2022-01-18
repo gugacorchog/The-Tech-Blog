@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="bg-light p-3 m-1 text-center mb-5" id="title">
+    <h1 class="text-primary fw-bold">Dashboard</h1>
+  </div>
+</div>
+
+{{!-- New Post Button --}} 
+<div class="new-post-button row mb-5">
+  <div class="d-flex justify-content-center">
+    <button type="button" class="btn btn-primary btn-lg">+ New Post</button>
+  </div>
+</div>
+
+{{!-- New Post Form --}}
+<div class="new-post-form row mb-5">
+  <div class="d-flex justify-content-center">
+    <form class="new-post bg-light p-3 m-1 col-6">
+      <div class="mb-3">
+        <h3 label class="form-label blog-post-title" for="new-post">Title</h3>
+        <input class="form-control" type="text" id="new-post-title">
+      </div>
+      <div class="mb-3">
+        <h4 label class="form-label blog-post-title" for="new-post">Blog Content</h4>
+        <textarea class="form-control" type="text" rows="6" id="new-post-content"></textarea>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary" type="submit">Post</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{{!-- Display posts --}}
+<div class="row post-list">
+  {{#each posts as |post| }}
+  <div class="bg-light p-3 m-1">
+    <h2 class="blog-post-title">{{title}}</h2>
+    <p class="blog-post-meta">{{format_date post.date_created}}</p>
+    <p>{{post.content}}</p>
+    <p><a href="/post/{{user.id}}">Read more...</a></p>
+    <button class="btn btn-primary" type="submit" data-id="{{user.id}}" value="edit">Edit</button>
+    <button class="btn btn-danger" type="submit" data-id="{{user.id}}" value="delete">DELETE</button>
+  </div>
+  {{/each}}
+</div>
+<script src="/js/dashboard.js"></script>

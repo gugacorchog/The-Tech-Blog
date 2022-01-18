@@ -1,0 +1,17 @@
+<div class="row">
+            <div class="bg-light p-3 m-1 text-center mb-5" id="title">
+                <h1 class="text-primary fw-bold">The Tech Blog</h1>
+            </div>
+        </div>
+<!-- Display list of articles --> 
+{{#each posts as |post| }}
+<div class="row">
+            <div class="bg-light p-3 m-1">
+                <h2 class="blog-post-title">{{post.title}}</h2>
+                <p class="blog-post-meta">{{format_date post.date_created}} by {{post.user.name}}</p>
+                <p>{{post.content}}</p>
+                <p><a href="/post/{{post.id}}">Read more...</a></p>
+            </div>
+        </div>
+{{/each}}
+

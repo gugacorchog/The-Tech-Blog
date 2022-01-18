@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&family=Playfair+Display:wght@700&display=swap');
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.blog-post-title{
+    font-family: 'Playfair Display','Times New Roman', Times, serif;
+}
+
+.blog-post-meta{
+    font-size: 0.9rem;
+    color:rgb(97, 97, 97);
+}
+
+.no-button {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    color: #0d6efd;
+    text-decoration: none;
+    font-size: 100%;
+  }
+  
+  .no-button:hover {
+    color: #065b83;
+    text-decoration: underline;
+  }
+
+  .bg-comment {
+    background-color:rgb(243, 244, 255);
+}
