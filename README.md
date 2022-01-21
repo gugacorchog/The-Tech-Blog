@@ -72,10 +72,14 @@ https://murmuring-headland-80365.herokuapp.com/
 ## Technologies
 
 #### "Dependencies" 
-##### express: "^4.17.2",
-##### moment: "^2.29.1",
-##### mongoose: "^6.1.4"
-##### nodemon": "^2.0.15"
+##### connect-session-sequelize: "^7.1.2",
+##### dotenv: "^10.0.0",
+##### express": "^4.17.1",
+##### nexpress-handlebars: "^6.0.2",
+##### express-session: "^1.17.2",
+##### mysql2: "^2.3.3",
+##### sequelize: "^6.12.0-alpha.1"
+
 
 ## Question
 Questions? Let me know:  
